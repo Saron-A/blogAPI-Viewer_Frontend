@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/form.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>LOGIN FORM</title>
+  </head>
+  <body>
+    <h1>Log into Your Account</h1>
+    <form action="" method="POST">
+      <div class="label-input">
+        <label for="email">Enter your email: </label>
+        <input type="text" id="email" name="email" required />
+      </div>
+      <div class="label-input">
+        <label for="password">Enter your password: </label>
+        <input type="password" id="password" name="password" required />
+      </div>
+      <button type="submit">Login</button>
+    </form>
+    <p>If you don't have an account, <a href="/signup">Sign up here</a></p>
+    <script>
+      // JS need to intercept and send it to the backend using the actual endpoint in the backend like http://localhost...
+      //recieve response from the backend
+      // curate it to fit appropriate UX
+      // store token
+      const form = document.querySelector("form");
+
+      // Because these info come when the user submits, on submit event
+      // const email = document.querySelector("#email").value.trim();
+      // const password = document.querySelector("#password").value.trim();
+
+      const loginUser = async (e) => {
+        try {
+          e.preventDefault();
+          const email = document.querySelector("#email").value.trim();
+          const password = document.querySelector("#password").value.trim();
+
+          const userInfo = {
+            email: email,
+            password: password,
+          };
+
+          const res = await axios.post(
+            "http://localhost:5000/api/login",
+            userInfo,
+          );
+          console.log(res.data); // return {token, data} do what you want
+          // only if token has been generated aka login succeeded
+          if (res.data.token) {
+            // store token on local storage
+            localStorage.setItem("token", res.data.token);
+
+            // we can handle routing here for the frontend part using window.location.href = ""
+            window.location.href = "../dashboard.html";
+          } else {
+            console.log("Login failed");
+          }
+        } catch (err) {
+          console.error(err.message);
+        }
+      };
+
+      form.addEventListener("submit", loginUser);
+    </script>
+  </body>
+</html>

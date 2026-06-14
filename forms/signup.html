@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signup form</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <h1>Create an Account</h1>
+    <form action="" method="POST">
+      <div class="label-input">
+        <label for="username">Create a username:</label>
+        <input type="text" id="username" name="username" required />
+      </div>
+      <div class="label-input">
+        <label for="email">Enter your email:</label>
+        <input type="text" id="email" name="email" required />
+      </div>
+      <div class="label-input">
+        <label for="password">Create a password:</label>
+        <input type="password" id="password" name="password" required />
+      </div>
+      <div class="label-input">
+        <label for="confirm_pass">Confirm your password:</label>
+        <input type="password" id="confirm_pass" name="confirm_pass" required />
+      </div>
+      <button type="submit">Sign Up</button>
+    </form>
+    <script>
+      // JS need to intercept and send it to the backend using the actual endpoint in the backend like http://localhost...
+
+      // get the values of the elements of username, email, password, confirm password
+      const form = document.querySelector("form");
+
+      const prepareForSubmit = async (e) => {
+        try {
+          e.preventDefault();
+
+          const username = document.querySelector("#username").value.trim();
+          const email = document.querySelector("#email").value.trim();
+          const password = document.querySelector("#password").value.trim();
+          const confirmPass = document
+            .querySelector("#confirm_pass")
+            .value.trim();
+
+          const newUser = {
+            username: username,
+            email: email,
+            password: password,
+            confirmPassword: confirmPass,
+          };
+
+          const res = await axios.post(
+            "http://localhost:5000/api/signup",
+            newUser,
+          );
+          console.log("User successfully created");
+          console.log(res.data);
+        } catch (err) {
+          console.error(err);
+        }
+      };
+      form.addEventListener("submit", prepareForSubmit);
+    </script>
+  </body>
+</html>
