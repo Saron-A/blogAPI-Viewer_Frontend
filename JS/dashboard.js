@@ -4,12 +4,12 @@ const token = localStorage.getItem("token");
 
 const getAllData = async () => {
   try {
-    const res = await axios.get("http://localhost:5000/api/dashboard", {
+    const res = await axios.get("http://localhost:5000/api/dashboardV", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-    // we get {posts : {title, body, time, isPublished, author}, user : {id, username, email}}
+    // we get {posts : {title, body, time, author}, user : {id, username, email}}
     console.log(res.data);
 
     const posts = res.data.posts; // array
@@ -27,6 +27,7 @@ getAllData();
 const createElements = (posts, user) => {
   const headerDiv = document.querySelector("#header");
   const postsDiv = document.querySelector(".posts");
+  postsDiv.setAttribute("style", "display: flex; gap: 1rem");
 
   const h1 = document.createElement("h1");
   h1.textContent = `Welcome back, ${user.username} !`;
@@ -36,7 +37,7 @@ const createElements = (posts, user) => {
 
   headerDiv.append(h1, h2);
 
-  // display posts if any or a message if not
+  // display all posts in the database if any or a message if not -- get all posts
   if (posts.length === 0) {
     const h3 = document.createElement("h3");
     h3.textContent = "No posts yet";
@@ -44,6 +45,10 @@ const createElements = (posts, user) => {
   } else {
     posts.forEach((post) => {
       const postDiv = document.createElement("div");
+      postDiv.setAttribute(
+        "style",
+        "border : 0.125rem solid black; padding : 1rem; border-radius : 1rem; width: fit-content",
+      );
 
       const titleH = document.createElement("h3");
       titleH.textContent = `${post.title}`;
@@ -55,6 +60,7 @@ const createElements = (posts, user) => {
       timeH.textContent = `${post.created_at}`;
 
       postDiv.append(titleH, authorH, timeH);
+      postsDiv.appendChild(postDiv);
     });
   }
 };

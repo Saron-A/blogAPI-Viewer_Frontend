@@ -24,26 +24,43 @@ const createElements = (posts) => {
   // check if posts.length > 0, display error message if not
   const postsDiv = document.querySelector(".posts");
 
+  const publishedSection = document.createElement("div");
+  const unpublishedSection = document.createElement("div");
+
+  const publishedTitle = document.createElement("h2");
+  publishedTitle.textContent = "Published Posts";
+
+  const unpublishedTitle = document.createElement("h2");
+  unpublishedTitle.textContent = "Unpublished Posts";
+
+  publishedSection.appendChild(publishedTitle);
+  unpublishedSection.appendChild(unpublishedTitle);
+
   if (posts.length === 0) {
     const p = document.createElement("h3");
     p.textContent = "No posts yet.";
     postsDiv.appendChild(p);
   } else {
     posts.forEach((post) => {
-      // create a postdiv
-      const postDiv = document.createElement("div");
+      const postCard = document.createElement("div");
 
       const titleH = document.createElement("h3");
-      titleH.textContent = `${post.title}`;
+      titleH.textContent = post.title;
 
       const authorH = document.createElement("h4");
-      authorH.textContent = `${post.author}`;
+      authorH.textContent = post.author;
 
       const timeH = document.createElement("p");
-      timeH.textContent = `${post.created_at}`;
+      timeH.textContent = post.created_at;
 
-      postDiv.append(titleH, authorH, timeH);
-      postsDiv.append(postDiv);
+      postCard.append(titleH, authorH, timeH);
+
+      if (post.is_published) {
+        publishedSection.appendChild(postCard);
+      } else {
+        unpublishedSection.appendChild(postCard);
+      }
     });
   }
+  postsDiv.append(publishedSection, unpublishedSection);
 };
