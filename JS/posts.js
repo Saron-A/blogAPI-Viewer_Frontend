@@ -60,6 +60,12 @@ const createElements = (posts) => {
       } else {
         unpublishedSection.appendChild(postCard);
       }
+      postCard.addEventListener("click", () => {
+        // open a page dynamically and show the body as well
+        console.log(post);
+        console.log(post.id);
+        window.location.href = `./post.html?postId=${post.id}`;
+      });
     });
   }
   postsDiv.append(publishedSection, unpublishedSection);
