@@ -3,23 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Viewer's Dashboard</title>
+    <title>Document</title>
   </head>
   <body>
-    <!--Scaffold to dynamically add content-->
     <nav>
       <ul>
-        <li><a href="dashboard.html">Home</a></li>
+        <li><a href="./dashboard.html">Home</a></li>
         <li><a href="./profile.html">Profile</a></li>
         <li><a href="./posts.html">My Posts</a></li>
-        <li>
-          <a href="../frontend-author/dashboard.html">Become an Author</a>
-        </li>
       </ul>
     </nav>
-    <header id="header"></header>
-    <div class="posts"></div>
+    <!--Display the body of the post as well -->
+    <h1 id="title"></h1>
+    <div class="post"></div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="./JS/dashboard.js"></script>
+    <script src="./JS/post.js"></script>
   </body>
 </html>

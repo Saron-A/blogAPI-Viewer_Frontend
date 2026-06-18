@@ -1,28 +1,109 @@
 <!doctype html>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Landing Page</title>
+    <title>BlogAPI</title>
   </head>
+
   <body>
     <nav>
       <ul>
-        <li><a href="/">Home</a></li>
+        <li><a href="./index.html">Home</a></li>
         <li><a href="./forms/signup.html">Signup</a></li>
         <li><a href="./forms/login.html">Login</a></li>
+        <li>
+          <a href="../frontend-author/dashboard.html"> Become an Author </a>
+        </li>
       </ul>
     </nav>
+
+    ```
     <header>
-      <h1>Welcome to BlogAPI - Viewer Version</h1>
+      <h1>Welcome to BlogAPI</h1>
+
       <p>
-        Where you can view, read and react to published posts and check
-        reactions and comments to your published posts!
+        Discover articles written by members of our community, interact with
+        published content, and share your own ideas with the world.
+      </p>
+
+      <p>
+        Whether you are a reader looking for interesting content or an author
+        wanting to publish blogs, BlogAPI provides a simple platform to connect
+        writers and readers.
       </p>
     </header>
+
     <main>
-      <p>Join us and have fun!</p>
+      <section>
+        <h2>For Readers</h2>
+
+        <ul>
+          <li>Browse published blog posts</li>
+          <li>View author profiles</li>
+          <li>Read articles from different writers</li>
+          <li>Follow your favorite content</li>
+        </ul>
+
+        <a href="./forms/login.html"> Explore Published Posts </a>
+      </section>
+
+      <hr />
+
+      <section>
+        <h2>For Authors</h2>
+
+        <ul>
+          <li>Create and manage blog posts</li>
+          <li>Save drafts before publishing</li>
+          <li>Publish content for readers</li>
+          <li>Manage your profile and posts</li>
+        </ul>
+
+        <a href="../frontend-author/forms/login.html">
+          Login to access Author Dashboard
+        </a>
+      </section>
+
+      <hr />
+
+      <section>
+        <h2>Getting Started</h2>
+
+        <p>New to BlogAPI?</p>
+
+        <ol>
+          <li>Create an account.</li>
+          <li>Login to access your dashboard.</li>
+          <li>Choose whether to read content or become an author.</li>
+          <li>Start exploring or publishing posts.</li>
+        </ol>
+        <button id="authorBtn">Become an Author</button>
+      </section>
     </main>
-    <footer></footer>
+
+    <footer>
+      <p>BlogAPI Project</p>
+      <p>
+        Built with HTML, CSS, JavaScript, Node.js, Express, PostgreSQL, JWT
+        Authentication, and Axios.
+      </p>
+    </footer>
+    ```
   </body>
+
+  <script>
+    const btn = document.getElementById("authorBtn");
+
+    btn.addEventListener("click", () => {
+      const token = localStorage.getItem("token");
+
+      if (token) {
+        window.location.href = "../frontend-author/dashboard.html";
+      } else {
+        window.location.href = "../frontend-author/forms/signup.html";
+      }
+    });
+  </script>
 </html>
