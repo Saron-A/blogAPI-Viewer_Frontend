@@ -93,7 +93,7 @@ Responsible for:
 Clone the repository:
 
 ```bash
-git clone <VIEWER_FRONTEND_REPOSITORY_URL>
+git clone https://github.com/Saron-A/blogAPI-Viewer_Frontend
 ```
 
 Move into the project:
