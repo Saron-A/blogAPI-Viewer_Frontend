@@ -27,7 +27,7 @@ Responsible for:
 
 Repository:
 
-`[AUTHOR_FRONTEND_REPOSITORY_URL]`
+`https://github.com/Saron-A/blogAPI-Author_Frontend`
 
 Responsible for:
 
@@ -40,7 +40,7 @@ Responsible for:
 
 Repository:
 
-`[BACKEND_REPOSITORY_URL]`
+`https://github.com/Saron-A/blogAPI-backend`
 
 Responsible for:
 
