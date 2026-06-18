@@ -1,6 +1,13 @@
 // dynamically load content after fetching token, user data and posts from the backend
 
 const token = localStorage.getItem("token");
+const logOutBtn = document.querySelector("button");
+
+logOutBtn.addEventListener("click", () => {
+  // remove the token from the local storage and clean it
+  localStorage.removeItem("token");
+  window.location.href = "./forms/login.html";
+});
 
 const getAllData = async () => {
   try {
